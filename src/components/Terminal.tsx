@@ -82,6 +82,23 @@ const Terminal = () => {
               </a>
             </div>
           </div>
+          <div className="mt-4 pt-4 border-t border-terminal-muted">
+            <div className="text-terminal-accent font-bold mb-2">📦 More Projects</div>
+            <div className="text-sm">
+              Check out more of my projects on GitHub,
+            </div>
+            <div className="mt-3">
+              <a 
+                href="https://github.com/YashSensei?tab=repositories" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                className="text-terminal-primary hover:text-terminal-accent transition-colors flex items-center gap-2 text-xs"
+              >
+                <Github size={12} />
+                <span>View All Projects → github.com/YashSensei</span>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     ),
