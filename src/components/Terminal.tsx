@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Github, Linkedin, Instagram, Twitter, FileText, Globe } from 'lucide-react';
 
 interface Command {
@@ -9,6 +9,8 @@ interface Command {
 const Terminal = () => {
   const [currentInput, setCurrentInput] = useState('');
   const [commandHistory, setCommandHistory] = useState<Command[]>([]);
+  const [historyIndex, setHistoryIndex] = useState(-1);
+  const commandHistoryRef = useRef<HTMLDivElement>(null);
 
   const commands = {
     help: () => (
@@ -230,6 +232,7 @@ const Terminal = () => {
     ),
     clear: () => {
       setCommandHistory([]);
+      setHistoryIndex(-1);
       return null;
     }
   };
@@ -240,6 +243,7 @@ const Terminal = () => {
     
     if (trimmedInput === 'clear') {
       setCommandHistory([]);
+      setHistoryIndex(-1);
       return;
     }
 
@@ -250,6 +254,7 @@ const Terminal = () => {
     );
 
     setCommandHistory(prev => [...prev, { input, output }]);
+    setHistoryIndex(-1);
   };
 
   const handleKeyPress = (e: React.KeyboardEvent) => {
@@ -258,6 +263,31 @@ const Terminal = () => {
         handleCommand(currentInput);
       }
       setCurrentInput('');
+    }
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'ArrowUp') {
+      e.preventDefault();
+      if (commandHistory.length > 0) {
+        const newIndex = historyIndex === -1 
+          ? commandHistory.length - 1 
+          : Math.max(0, historyIndex - 1);
+        setHistoryIndex(newIndex);
+        setCurrentInput(commandHistory[newIndex].input);
+      }
+    } else if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      if (historyIndex !== -1) {
+        const newIndex = historyIndex + 1;
+        if (newIndex >= commandHistory.length) {
+          setHistoryIndex(-1);
+          setCurrentInput('');
+        } else {
+          setHistoryIndex(newIndex);
+          setCurrentInput(commandHistory[newIndex].input);
+        }
+      }
     }
   };
 
@@ -279,6 +309,12 @@ const Terminal = () => {
     
     setCommandHistory([{ input: 'welcome', output: welcomeCommand() }]);
   }, []);
+
+  useEffect(() => {
+    if (commandHistoryRef.current) {
+      commandHistoryRef.current.scrollTop = commandHistoryRef.current.scrollHeight;
+    }
+  }, [commandHistory]);
 
   return (
     <div className="min-h-screen bg-terminal-bg terminal-background relative">
@@ -338,7 +374,10 @@ const Terminal = () => {
           </div>
 
           {/* Command History */}
-          <div className="space-y-4 mb-4 max-h-96 overflow-y-auto">
+          <div 
+            ref={commandHistoryRef}
+            className="space-y-4 mb-4 max-h-96 overflow-y-auto scroll-smooth"
+          >
             {commandHistory.map((cmd, index) => (
               <div key={index}>
                 <div className="command-line text-terminal-primary text-sm">{cmd.input}</div>
@@ -355,6 +394,7 @@ const Terminal = () => {
               value={currentInput}
               onChange={(e) => setCurrentInput(e.target.value)}
               onKeyPress={handleKeyPress}
+              onKeyDown={handleKeyDown}
               className="bg-transparent border-none outline-none text-terminal-text flex-1 font-mono cursor text-sm"
               placeholder=""
               autoFocus
