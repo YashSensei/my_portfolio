@@ -31,6 +31,10 @@ const Terminal = () => {
           <div><span className="text-terminal-primary">resume</span> - Download my resume</div>
           <div><span className="text-terminal-primary">clear</span> - Clear terminal</div>
           <div><span className="text-terminal-primary">theme</span> - Change terminal theme</div>
+          <div><span className="text-terminal-primary">fortune</span> - Display a random programming quote</div>
+        </div>
+        <div className="mt-4 text-terminal-text">
+          For more commands, type <span className="text-terminal-primary">man</span> to see the complete manual.
         </div>
       </div>
     ),
@@ -364,11 +368,75 @@ const Terminal = () => {
             <div>• education - Educational background</div>
             <div>• achievements - My accomplishments</div>
             <div>• resume - Download resume</div>
+            <div>• fortune - Display random programming quotes</div>
+            <div>• cowsay - Display message in ASCII art</div>
+            <div>• neofetch - Display system information</div>
+            <div>• cd - Change directory (simulated)</div>
+            <div>• mkdir - Make directory (simulated)</div>
+            <div>• touch - Create file (simulated)</div>
+            <div>• cat - Read file (simulated)</div>
+            <div>• rm - Remove file (simulated)</div>
+            <div>• sudo - Execute as superuser (simulated)</div>
           </div>
           <div className="text-terminal-muted text-sm mt-2">
             Note: Some commands are simulated and have limited functionality.
           </div>
         </div>
+      </div>
+    ),
+    fortune: () => {
+      const quotes = [
+        "The best way to predict the future is to implement it. - Alan Kay",
+        "Talk is cheap. Show me the code. - Linus Torvalds",
+        "Any fool can write code that a computer can understand. Good programmers write code that humans can understand. - Martin Fowler",
+        "First, solve the problem. Then, write the code. - John Johnson",
+        "Sometimes it pays to stay in bed on Monday, rather than spending the rest of the week debugging Monday's code. - Dan Salomon",
+        "It's not a bug – it's an undocumented feature. - Anonymous",
+        "Code never lies, comments sometimes do. - Ron Jeffries",
+        "Programming isn't about what you know; it's about what you can figure out. - Chris Pine",
+        "The only way to learn a new programming language is by writing programs in it. - Dennis Ritchie",
+        "Sometimes the best way to solve a problem is to stop participating in the problem. - Jonathan Mead",
+        "The most damaging phrase in the language is 'We've always done it this way.' - Grace Hopper",
+        "Good code is like a good joke: it needs no explanation. - Russ Olsen",
+        "Programming is the art of telling another human what one wants the computer to do. - Donald Knuth",
+        "The best error message is the one that never shows up. - Thomas Fuchs",
+        "Code is like humor. When you have to explain it, it's bad. - Cory House"
+      ];
+      return <div className="text-terminal-text">{quotes[Math.floor(Math.random() * quotes.length)]}</div>;
+    },
+    cowsay: (input: string = '') => {
+      const message = input.replace('cowsay', '').trim() || 'Moo!';
+      return (
+        <div className="text-terminal-text font-mono">
+          <pre>{`
+ ${'_'.repeat(message.length + 2)}
+< ${message} >
+ ${'-'.repeat(message.length + 2)}
+        \\   ^__^
+         \\  (oo)\\_______
+            (__)\\       )\\/\\
+                ||----w |
+                ||     ||
+      `}</pre>
+        </div>
+      );
+    },
+    neofetch: () => (
+      <div className="text-terminal-text font-mono">
+        <pre>{`
+    yash@portfolio
+    ---------------
+    OS: Portfolio Terminal
+    Host: React.js
+    Kernel: TypeScript
+    Shell: Custom Terminal
+    Theme: Cyberpunk
+    Icons: Lucide Icons
+    Terminal: Web Browser
+    CPU: JavaScript Engine
+    Memory: Browser Memory
+    Disk: Local Storage
+    `}</pre>
       </div>
     )
   };
@@ -393,6 +461,14 @@ const Terminal = () => {
     // Handle echo command separately since it needs the full input
     if (trimmedInput.startsWith('echo ')) {
       const output = commands.echo(input);
+      setCommandHistory(prev => [...prev, { input, output }]);
+      setHistoryIndex(-1);
+      return;
+    }
+
+    // Handle cowsay command separately since it needs the full input
+    if (trimmedInput.startsWith('cowsay ')) {
+      const output = commands.cowsay(input);
       setCommandHistory(prev => [...prev, { input, output }]);
       setHistoryIndex(-1);
       return;
