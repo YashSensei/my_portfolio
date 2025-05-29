@@ -256,6 +256,34 @@ const Terminal = () => {
 
   const handleCommand = (input: string) => {
     const trimmedInput = input.trim().toLowerCase();
+    
+    // Handle theme command
+    if (trimmedInput.startsWith('theme ')) {
+      const themeName = trimmedInput.split(' ')[1];
+      const validThemes = ['matrix', 'cyberpunk', 'retro'];
+      
+      if (validThemes.includes(themeName)) {
+        // Remove existing theme classes
+        document.documentElement.classList.remove('theme-matrix', 'theme-cyberpunk', 'theme-retro');
+        // Add new theme class
+        document.documentElement.classList.add(`theme-${themeName}`);
+        
+        setCommandHistory(prev => [...prev, { 
+          input, 
+          output: <div className="text-terminal-accent">Theme switched to {themeName} successfully!</div>
+        }]);
+        setHistoryIndex(-1);
+        return;
+      } else {
+        setCommandHistory(prev => [...prev, { 
+          input, 
+          output: <div className="text-red-400">Invalid theme. Available themes: matrix, cyberpunk, retro</div>
+        }]);
+        setHistoryIndex(-1);
+        return;
+      }
+    }
+
     const command = commands[trimmedInput as keyof typeof commands];
     
     if (trimmedInput === 'clear') {
