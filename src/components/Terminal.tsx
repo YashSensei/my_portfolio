@@ -6,13 +6,17 @@ interface Command {
   output: React.ReactNode;
 }
 
+interface CommandFunction {
+  (input?: string): React.ReactNode;
+}
+
 const Terminal = () => {
   const [currentInput, setCurrentInput] = useState('');
   const [commandHistory, setCommandHistory] = useState<Command[]>([]);
   const [historyIndex, setHistoryIndex] = useState(-1);
   const commandHistoryRef = useRef<HTMLDivElement>(null);
 
-  const commands = {
+  const commands: Record<string, CommandFunction> = {
     help: () => (
       <div className="text-terminal-accent">
         <div>Available commands:</div>
@@ -251,12 +255,149 @@ const Terminal = () => {
       setCommandHistory([]);
       setHistoryIndex(-1);
       return null;
-    }
+    },
+    ls: () => (
+      <div className="text-terminal-text">
+        <div>Directory listing:</div>
+        <div className="ml-4">
+          <div>📁 about</div>
+          <div>📁 projects</div>
+          <div>📁 contact</div>
+          <div>📁 skills</div>
+          <div>📁 experience</div>
+          <div>📁 education</div>
+          <div>📁 achievements</div>
+          <div>📄 resume.pdf</div>
+        </div>
+      </div>
+    ),
+    exit: () => {
+      const shouldExit = window.confirm('Are you sure you want to exit the terminal?');
+      if (shouldExit) {
+        window.close(); // This will attempt to close the tab
+        return <div>Closing terminal...</div>;
+      }
+      return <div>Exit cancelled.</div>;
+    },
+    pwd: () => (
+      <div className="text-terminal-text">
+        /home/yash/portfolio
+      </div>
+    ),
+    cd: () => (
+      <div className="text-terminal-text">
+        <div className="text-red-400">Error: Cannot change directory in this terminal session.</div>
+        <div className="text-terminal-muted text-sm mt-1">This is a read-only terminal for portfolio navigation.</div>
+      </div>
+    ),
+    mkdir: () => (
+      <div className="text-terminal-text">
+        <div className="text-red-400">Error: Cannot create directories in this terminal session.</div>
+        <div className="text-terminal-muted text-sm mt-1">This is a read-only terminal for portfolio navigation.</div>
+      </div>
+    ),
+    touch: () => (
+      <div className="text-terminal-text">
+        <div className="text-red-400">Error: Cannot create files in this terminal session.</div>
+        <div className="text-terminal-muted text-sm mt-1">This is a read-only terminal for portfolio navigation.</div>
+      </div>
+    ),
+    cat: () => (
+      <div className="text-terminal-text">
+        <div className="text-red-400">Error: Cannot read files in this terminal session.</div>
+        <div className="text-terminal-muted text-sm mt-1">This is a read-only terminal for portfolio navigation.</div>
+      </div>
+    ),
+    echo: (input: string = '') => {
+      const message = input.replace('echo', '').trim();
+      return (
+        <div className="text-terminal-text">
+          {message || ''}
+        </div>
+      );
+    },
+    whoami: () => (
+      <div className="text-terminal-text">
+        yash@portfolio
+      </div>
+    ),
+    date: () => {
+      const now = new Date();
+      return (
+        <div className="text-terminal-text">
+          {now.toLocaleString()}
+        </div>
+      );
+    },
+    sudo: () => (
+      <div className="text-terminal-text">
+        <div className="text-red-400">Error: Permission denied.</div>
+        <div className="text-terminal-muted text-sm mt-1">This is a read-only terminal for portfolio navigation.</div>
+      </div>
+    ),
+    rm: () => (
+      <div className="text-terminal-text">
+        <div className="text-red-400">Error: Cannot remove files in this terminal session.</div>
+        <div className="text-terminal-muted text-sm mt-1">This is a read-only terminal for portfolio navigation.</div>
+      </div>
+    ),
+    man: () => (
+      <div className="text-terminal-text">
+        <div className="text-terminal-secondary mb-2">▶ Manual Pages</div>
+        <div className="ml-4 space-y-2">
+          <div>Available commands:</div>
+          <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-sm">
+            <div>• help - Show available commands</div>
+            <div>• ls - List directory contents</div>
+            <div>• pwd - Print working directory</div>
+            <div>• whoami - Print effective user ID</div>
+            <div>• date - Display system date/time</div>
+            <div>• echo - Display a line of text</div>
+            <div>• clear - Clear terminal screen</div>
+            <div>• exit - Exit the terminal</div>
+            <div>• theme - Change terminal theme</div>
+            <div>• about - About me</div>
+            <div>• projects - View projects</div>
+            <div>• contact - Contact information</div>
+            <div>• skills - Technical skills</div>
+            <div>• experience - Work experience</div>
+            <div>• education - Educational background</div>
+            <div>• achievements - My accomplishments</div>
+            <div>• resume - Download resume</div>
+          </div>
+          <div className="text-terminal-muted text-sm mt-2">
+            Note: Some commands are simulated and have limited functionality.
+          </div>
+        </div>
+      </div>
+    )
   };
 
   const handleCommand = (input: string) => {
     const trimmedInput = input.trim().toLowerCase();
     
+    // Handle sudo commands
+    if (trimmedInput.startsWith('sudo ')) {
+      const command = trimmedInput.replace('sudo', '').trim();
+      setCommandHistory(prev => [...prev, { 
+        input, 
+        output: <div className="text-terminal-text">
+          <div className="text-red-400">Permission denied: {command}</div>
+          <div className="text-terminal-muted text-sm mt-1">This is a read-only terminal for portfolio navigation.</div>
+        </div>
+      }]);
+      setHistoryIndex(-1);
+      return;
+    }
+
+    // Handle echo command separately since it needs the full input
+    if (trimmedInput.startsWith('echo ')) {
+      const output = commands.echo(input);
+      setCommandHistory(prev => [...prev, { input, output }]);
+      setHistoryIndex(-1);
+      return;
+    }
+
     // Handle theme command
     if (trimmedInput.startsWith('theme ')) {
       const themeName = trimmedInput.split(' ')[1];
