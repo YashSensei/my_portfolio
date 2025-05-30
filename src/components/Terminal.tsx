@@ -386,6 +386,8 @@ const Terminal = () => {
     ),
     fortune: () => {
       const quotes = [
+        "A real resume is just a catalog of all your sufferings - Naval Ravikant",
+        "The only way to do great work is to love what you do. - Steve Jobs",
         "The best way to predict the future is to implement it. - Alan Kay",
         "Talk is cheap. Show me the code. - Linus Torvalds",
         "Any fool can write code that a computer can understand. Good programmers write code that humans can understand. - Martin Fowler",
