@@ -21,6 +21,7 @@ const Terminal = () => {
       <div className="text-terminal-accent">
         <div>Available commands:</div>
         <div className="ml-4 mt-2 space-y-1">
+          <div><span className="text-terminal-primary">welcome</span> - Display welcome message</div>
           <div><span className="text-terminal-primary">about</span> - Learn more about me</div>
           <div><span className="text-terminal-primary">projects</span> - View my projects</div>
           <div><span className="text-terminal-primary">contact</span> - Get in touch</div>
@@ -406,6 +407,22 @@ const Terminal = () => {
       ];
       return <div className="text-terminal-text">{quotes[Math.floor(Math.random() * quotes.length)]}</div>;
     },
+    welcome: () => (
+      <div className="text-terminal-text">
+        <div className="space-y-2">
+          <div className="text-terminal-accent">Welcome to Yash's Portfolio Terminal! 🚀</div>
+          <div className="text-sm">I'm a Frontend Developer and Computer Science student passionate about building impactful web applications.</div>
+          <div className="text-sm mt-4">Quick Start:</div>
+          <div className="ml-4 space-y-1 text-sm">
+            <div>• Type <span className="text-terminal-primary">help</span> to see available commands</div>
+            <div>• Type <span className="text-terminal-primary">about</span> to learn more about me</div>
+            <div>• Type <span className="text-terminal-primary">projects</span> to view my work</div>
+            <div>• Type <span className="text-terminal-primary">contact</span> to get in touch</div>
+          </div>
+          <div className="text-terminal-primary mt-4">Ready to explore? Let's dive in! 💻</div>
+        </div>
+      </div>
+    ),
     cowsay: (input: string = '') => {
       const message = input.replace('cowsay', '').trim() || 'Moo!';
       return (
