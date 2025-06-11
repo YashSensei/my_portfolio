@@ -43,11 +43,12 @@ const Terminal = () => {
       <div className="text-terminal-text">
         <div className="text-terminal-secondary mb-2">▶ About Yash</div>
         <div className="ml-4 space-y-2">
-          <div>👋 Hey there! I'm Yash, a passionate Frontend Developer and Computer Science student.</div>
-          <div>🚀 I specialize in building responsive web applications and AI-powered solutions.</div>
+          <div>👋 Hey there! I'm Yash, a passionate Frontend Developer, Technical Writer, and Computer Science student.</div>
+          <div>🚀 I specialize in building responsive web applications, AI-powered solutions, and creating engaging content.</div>
+          <div>✍️ As a technical writer, I craft compelling narratives and technical documentation that bridges the gap between complex technology and user understanding.</div>
           <div>💡 Currently pursuing B.Sc. in Computer Science at BITS Pilani and Scaler School of Technology.</div>
-          <div>🎯 Goal: Creating impactful web applications that solve real-world problems.</div>
-          <div>🌟 When I'm not coding, you'll find me leading teams or organizing events at Scaler School of Technology.</div>
+          <div>🎯 Goal: Creating impactful web applications and content that solve real-world problems.</div>
+          <div>🌟 When I'm not coding, you'll find me writing content, leading teams, or organizing events at Scaler School of Technology.</div>
         </div>
       </div>
     ),
@@ -90,6 +91,15 @@ const Terminal = () => {
                 <span>Live Demo → health-nivaran-doctor-dash.vercel.app</span>
               </a>
             </div>
+          </div>
+          <div className="border border-terminal-muted p-3 rounded">
+            <div className="text-terminal-accent font-bold">✍️ Technical Documentation & Content</div>
+            <div className="text-sm mt-1">Comprehensive technical documentation and SEO content creation</div>
+            <div className="text-terminal-primary text-xs mt-1">Skills: Technical Writing, SEO, User Guides, API Documentation</div>
+            <div className="text-xs mt-1">• Created user guides and technical documentation for web applications</div>
+            <div className="text-xs">• Wrote SEO-optimized blog posts and content for client websites</div>
+            <div className="text-xs">• Developed API documentation and developer guides</div>
+            <div className="text-xs">• Improved website rankings through strategic content creation</div>
           </div>
           <div className="mt-4 pt-4 border-t border-terminal-muted">
             <div className="text-terminal-accent font-bold mb-2">📦 More Projects</div>
@@ -135,8 +145,11 @@ const Terminal = () => {
               </div>
             </div>
             <div>
-              <div className="text-terminal-accent mb-2">Others</div>
+              <div className="text-terminal-accent mb-2">Content & Others</div>
               <div className="text-sm space-y-1">
+                <div>• Technical Writing</div>
+                <div>• Blog Content Creation</div>
+                <div>• SEO Content</div>
                 <div>• Git / GitHub</div>
                 <div>• Figma</div>
                 <div>• Vercel</div>
@@ -153,18 +166,20 @@ const Terminal = () => {
         <div className="text-terminal-secondary mb-2">▶ Work Experience</div>
         <div className="ml-4 space-y-3">
           <div className="border-l-2 border-terminal-primary pl-4">
-            <div className="text-terminal-accent font-bold">Frontend Developer</div>
+            <div className="text-terminal-accent font-bold">Frontend Developer / Technical Writer</div>
             <div className="text-terminal-primary text-sm">MagnumKare (Remote) • June 2024 - Jan 2025</div>
-            <div className="text-sm mt-1">• Developed responsive UIs for healthcare portals</div>
-            <div className="text-sm">• Implemented interactive features and optimized mobile layouts</div>
-            <div className="text-sm">• Managed social content and collaborated with marketing teams</div>
+            <div className="text-sm mt-1">• Developed and maintained responsive user interfaces for healthcare portals, improved engagement by enhancing UX</div>
+            <div className="text-sm">• Documented frontend, API, and other workflows and wrote internal guides to streamline onboarding and collaboration</div>
+            <div className="text-sm">• Wrote technical documentation and blog posts to help clients understand the integration of custom chatbots</div>
           </div>
           <div className="border-l-2 border-terminal-primary pl-4">
-            <div className="text-terminal-accent font-bold">Freelance Web Developer</div>
+            <div className="text-terminal-accent font-bold">Freelance Web Developer & Technical Writer</div>
             <div className="text-terminal-primary text-sm">Local Businesses (Remote) • July 2023 - Present</div>
             <div className="text-sm mt-1">• Built and deployed websites for SMEs with SEO focus</div>
             <div className="text-sm">• Created custom chatbot assistants using OpenAI APIs</div>
             <div className="text-sm">• Built AI-enabled assistants used by 50+ small businesses</div>
+            <div className="text-sm">• Wrote technical documentation and user guides for web applications</div>
+            <div className="text-sm">• Created SEO-optimized content and blog posts for client websites</div>
           </div>
         </div>
       </div>
@@ -192,6 +207,8 @@ const Terminal = () => {
         <div className="ml-4 space-y-2">
           <div>🏆 Qualified Scaler NSET 2024 with 100% score in Learnability</div>
           <div>🤖 Built AI-enabled assistant used by 50+ small businesses</div>
+          <div>✍️ Created technical documentation and user guides for multiple web applications</div>
+          <div>📝 Wrote SEO-optimized content that improved client website rankings</div>
           <div>👥 House Captain and Basketball Team Captain at Scaler School of Technology</div>
           <div>🎯 Self-taught React, Node.js, and AI APIs</div>
           <div>🤝 Active collaborator with designers, marketers, and developers</div>
@@ -411,7 +428,7 @@ const Terminal = () => {
       <div className="text-terminal-text">
         <div className="space-y-2">
           <div className="text-terminal-accent">Welcome to Yash's Portfolio Terminal! 🚀</div>
-          <div className="text-sm">I'm a Frontend Developer and Computer Science student passionate about building impactful web applications.</div>
+          <div className="text-sm">I'm a Frontend Developer, Techical Writer, and Computer Science student passionate about building impactful web applications and creating engaging content.</div>
           <div className="text-sm mt-4">Quick Start:</div>
           <div className="ml-4 space-y-1 text-sm">
             <div>• Type <span className="text-terminal-primary">help</span> to see available commands</div>
@@ -584,6 +601,7 @@ const Terminal = () => {
     const welcomeCommand = () => (
       <div className="text-terminal-text">
         <div className="mb-4">Welcome to my portfolio! - Type 'help' for a list of supported commands.</div>
+        <div className="text-sm mb-2">Frontend Developer • Technical Writer • Computer Science Student</div>
         <div className="text-terminal-primary">Ready to explore? Let's dive in! 🚀</div>
       </div>
     );
@@ -614,6 +632,7 @@ const Terminal = () => {
         {/* Social Links */}
         <div className="flex flex-col gap-2 text-xs sm:text-sm w-full lg:w-auto">
           <div className="text-terminal-accent text-left lg:text-center mb-2">Yash Agrawal</div>
+          <div className="text-terminal-muted text-xs text-left lg:text-center mb-2">Frontend Developer • Technical Writer • CS Student</div>
           <div className="space-y-1">
             <a href="https://github.com/YashSensei" target="_blank" rel="noopener noreferrer" className="text-terminal-text hover:text-terminal-primary transition-colors flex items-center gap-2">
               <Github size={14} />
