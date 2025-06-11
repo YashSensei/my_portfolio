@@ -231,13 +231,13 @@ const Terminal = () => {
         <div className="ml-4 space-y-2">
           <div>📄 Download my resume:</div>
           <a 
-            href="/Yash_Agrawal_cv.pdf" 
+            href="/yash_resume_cv.pdf" 
             target="_blank" 
             rel="noopener noreferrer" 
             className="text-terminal-primary hover:text-terminal-accent transition-colors flex items-center gap-2"
           >
             <FileText size={14} />
-            <span>Yash_Agrawal_cv.pdf</span>
+            <span>yash_resume_cv.pdf</span>
           </a>
           <div className="text-sm text-terminal-muted mt-2">
             Click the link above to view or download my resume.
