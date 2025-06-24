@@ -1,20 +1,21 @@
 # Yash's Interactive Portfolio
 
-A modern, terminal-style portfolio website that showcases my skills, projects, and experience in an interactive command-line interface. Built with React, TypeScript, and modern web technologies.
+A modern, terminal-style portfolio website that showcases my skills, projects, technical writing, and experience in an interactive command-line interface. Built with React, TypeScript, and modern web technologies.
 
 ![Portfolio Preview](public/opengraph-image.png)
 
 ## 🌟 Features
 
 - **Interactive Terminal Interface**: Navigate through my portfolio using command-line style interactions
+- **Frontend Development & Technical Writing**: Showcases both my engineering and writing work, including technical documentation, blog posts, and user guides
 - **Responsive Design**: Fully responsive layout that works on all devices
 - **Modern UI Components**: Built with shadcn/ui for a polished look and feel
 - **Dynamic Content**: Real-time command processing and output
 - **Music Player**: Integrated music player showing current listening status
-- **Project Showcase**: Featured projects with live demos and tech stack details
-- **Skills Visualization**: Interactive display of technical skills and expertise
-- **Experience Timeline**: Chronological view of work experience and education
-- **Achievements Section**: Highlights of notable accomplishments
+- **Project Showcase**: Featured projects with live demos, tech stack details, and writing samples
+- **Skills Visualization**: Interactive display of technical and writing skills
+- **Experience Timeline**: Chronological view of work experience (including technical writing) and education
+- **Achievements Section**: Highlights of notable accomplishments in both development and writing
 - **Contact Information**: Easy access to professional contact details and social links
 
 ## 🛠️ Technologies Used
@@ -80,12 +81,12 @@ The application will be available at `http://localhost:8080`
 The portfolio is organized into several interactive sections, accessible through terminal commands:
 
 - `help`: Display available commands
-- `about`: Learn about me and my background
-- `skills`: View technical skills and expertise
-- `projects`: Browse featured projects
-- `experience`: Check work experience
+- `about`: Learn about me and my background as a Frontend Developer and Technical Writer
+- `skills`: View technical and writing skills (Technical Writing, Blog Content Creation, SEO Content, etc.)
+- `projects`: Browse featured projects, including technical documentation and writing samples
+- `experience`: Check work experience, including roles as a Technical Writer (see MagnumKare and freelance)
 - `education`: View educational background
-- `achievements`: See notable accomplishments
+- `achievements`: See notable accomplishments in both development and writing
 - `contact`: Get contact information
 
 ## 🎨 Customization
@@ -111,4 +112,4 @@ This project is open source and available under the MIT License.
 
 ---
 
-Made with ❤️ by Yash Agrawal
+Made with ❤️ by Yash Agrawal (Kirito)
